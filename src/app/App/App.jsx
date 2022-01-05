@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import CurrentCity from "./CurrentCity";
 import OtherCities from "./OtherCities";
@@ -22,16 +22,26 @@ const Container = styled.div`
 
 const Bottom = styled.div`
   display: flex;
-  padding: 36px;
+  padding: 36px 48px;
 `;
 
+const Divider = styled.div`
+  width: 3px;
+  margin: 0 24px;
+  background-color: rgb(0, 0, 0, 0.1);
+`;
+
+const MELBOURNE_CITY_ID = 2158177;
+
 function App() {
+  const [cityId, setCityId] = useState(MELBOURNE_CITY_ID);
   return (
     <Wrapper>
       <Container>
-        <CurrentCity />
+        <CurrentCity cityId={cityId} />
         <Bottom>
-          <OtherCities></OtherCities>
+          <OtherCities cityId={cityId} setCityId={setCityId} />
+          <Divider></Divider>
           <Forecast></Forecast>
         </Bottom>
       </Container>

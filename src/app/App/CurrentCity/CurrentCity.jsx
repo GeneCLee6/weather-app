@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import OpenWeatherMap from "../../libs/OpenWeatherMap";
 import Weather from "./components/Weather";
 import CityName from "./components/CityName";
 
@@ -14,11 +15,26 @@ const Container = styled.div`
   align-items: flex-start;
 `;
 
-const CurrentCity = () => (
-  <Container>
-    <Weather></Weather>
-    <CityName></CityName>
-  </Container>
-);
+const CurrentCity = ({ cityId }) => {
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    const getCurrentCityWeather = async () => {
+      const response = await OpenWeatherMap.get("/weather", {
+        params: {
+          id: cityId,
+        },
+      });
+      setData(response.data);
+    };
+    getCurrentCityWeather();
+  }, [cityId]);
+  return (
+    <Container>
+      <Weather data={data}></Weather>
+      <CityName data={data}></CityName>
+    </Container>
+  );
+};
 
 export default CurrentCity;

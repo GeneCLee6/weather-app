@@ -19,6 +19,11 @@ const Name = styled.h1`
   }
 `;
 
-const CityName = () => <Name>Melbourne</Name>;
+const CityName = ({ data }) => {
+  if (!data) {
+    return "Loading...";
+  }
+  return <Name>{data.name}</Name>;
+};
 
 export default CityName;
