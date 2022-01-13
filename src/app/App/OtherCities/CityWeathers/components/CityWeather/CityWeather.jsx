@@ -27,11 +27,11 @@ const StyledTemerature = styled(Temperature)`
   margin-right: 16px;
 `;
 
-const CityWeather = ({ cityId, cityName, temperature, setCityId }) => (
-  <Container onClick={() => setCityId(cityId)}>
+const CityWeather = ({ cityName, temperature, onClick }) => (
+  <Container onClick={onClick}>
     <CityName>{cityName}</CityName>
     <StyledTemerature>{temperature}</StyledTemerature>
-    <WeatherIcon></WeatherIcon>
+    <WeatherIcon />
   </Container>
 );
 

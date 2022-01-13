@@ -2,9 +2,9 @@ import React from "react";
 import Section from "../../components/Section";
 import CityWeathers from "./CityWeathers";
 
-const OtherCities = ({ cityId, setCityId }) => (
+const OtherCities = ({ cityId, onCityClick }) => (
   <Section title="Other Cities">
-    <CityWeathers cityId={cityId} setCityId={setCityId}></CityWeathers>
+    <CityWeathers cityId={cityId} onCityClick={onCityClick}></CityWeathers>
   </Section>
 );
 

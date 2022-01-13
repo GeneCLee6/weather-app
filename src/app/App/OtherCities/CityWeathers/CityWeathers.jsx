@@ -4,7 +4,7 @@ import CityWeather from "./components/CityWeather";
 
 const CITY_IDS = [2158177, 2147714, 2174003, 2063523];
 
-const CityWeathers = ({ cityId, setCityId }) => {
+const CityWeathers = ({ cityId, onCityClick }) => {
   const [data, setData] = useState();
   useEffect(() => {
     const getCityWeathers = async () => {
@@ -30,10 +30,9 @@ const CityWeathers = ({ cityId, setCityId }) => {
         .map((cityWeather) => (
           <CityWeather
             key={cityWeather.id}
-            cityId={cityWeather.id}
             cityName={cityWeather.name}
             temperature={Math.round(cityWeather.main.temp)}
-            setCityId={setCityId}
+            onClick={() => onCityClick(cityWeather.id)}
           />
         ))}
     </React.Fragment>

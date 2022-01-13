@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Temperature from "../../../../components/Temperature";
 import Metas from "./components/Metas";
 import styled from "styled-components";
@@ -18,21 +18,14 @@ const Visibility = styled.p`
   color: rgb(255, 255, 255, 70%);
 `;
 
-const Weather = ({ data }) => {
-  if (!data) {
-    return "Loading...";
-  }
-
-  console.log(data);
-  return (
-    <div>
-      <Heading>
-        <Temperature>{data.main.temp}</Temperature>
-      </Heading>
-      <Visibility>{data.weather[0].main}</Visibility>
-      <Metas humidity={data.main.humidity} wind={data.wind.speed}></Metas>
-    </div>
-  );
-};
+const Weather = ({ data }) => (
+  <div>
+    <Heading>
+      <Temperature>{data.main.temp}</Temperature>
+    </Heading>
+    <Visibility>{data.weather[0].main}</Visibility>
+    <Metas humidity={data.main.humidity} wind={data.wind.speed}></Metas>
+  </div>
+);
 
 export default Weather;

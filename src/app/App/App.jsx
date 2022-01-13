@@ -40,7 +40,7 @@ function App() {
       <Container>
         <CurrentCity cityId={cityId} />
         <Bottom>
-          <OtherCities cityId={cityId} setCityId={setCityId} />
+          <OtherCities cityId={cityId} onCityClick={(id) => setCityId(id)} />
           <Divider></Divider>
           <Forecast></Forecast>
         </Bottom>

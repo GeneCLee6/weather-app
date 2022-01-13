@@ -10,9 +10,17 @@ const Container = styled.div`
   border-top-left-radius: 32px;
   border-top-right-radius: 32px;
   padding: 64px 96px;
+`;
+
+const Layout = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+`;
+
+const Loading = styled.div`
+  font-size: 1.5rem;
+  color: white;
 `;
 
 const CurrentCity = ({ cityId }) => {
@@ -20,6 +28,7 @@ const CurrentCity = ({ cityId }) => {
 
   useEffect(() => {
     const getCurrentCityWeather = async () => {
+      setData();
       const response = await OpenWeatherMap.get("/weather", {
         params: {
           id: cityId,
@@ -29,10 +38,20 @@ const CurrentCity = ({ cityId }) => {
     };
     getCurrentCityWeather();
   }, [cityId]);
+
+  if (!data) {
+    return <Loading>Loading...</Loading>;
+  }
   return (
     <Container>
-      <Weather data={data}></Weather>
-      <CityName data={data}></CityName>
+      {!data ? (
+        <Loading>Loading...</Loading>
+      ) : (
+        <Layout>
+          <Weather data={data}></Weather>
+          <CityName data={data}></CityName>
+        </Layout>
+      )}
     </Container>
   );
 };
